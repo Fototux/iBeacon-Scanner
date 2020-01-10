@@ -1,4 +1,5 @@
-______________ origin __________________
+________________________________________
+Origin:
 
 SwitchDoc Labs, LLC
 June 2014
@@ -8,7 +9,7 @@ https://github.com/switchdoclabs/iBeacon-Scanner-
 https://www.switchdoc.com/2014/08/ibeacon-raspberry-pi-scanner-python/
 ________________________________________
 
-Editet January 2020, Daniel Lehmann, github@fototux.com
+Edited January 2020, Daniel Lehmann, github@fototux.com
 ________________________________________
 
 blescan.py is a python program designed to read iBeacon advertizments using a linux system. There might be a way to run python-bluez on Windows or MAC systems but this not covered.
@@ -21,7 +22,7 @@ A generic scan could be done when executing the command "sudo python minimal_exa
 
 The scripts have been tested on Ubuntu 18.04 and Raspbian. 
 
-Required to install:
+Required to install (and maybe some others):
 sudo apt-get install bluetooth bluez python-bluez python
 
 
