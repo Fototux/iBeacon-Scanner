@@ -13,6 +13,14 @@ from datetime import datetime
 
 import math
 
+datafile = './measurement_data.csv'
+
+file_t = '/var/www/html/sensor_web/t.txt'
+file_rh = '/var/www/html/sensor_web/rh.txt' 
+file_ah = '/var/www/html/sensor_web/ah.txt' 
+file_dp = '/var/www/html/sensor_web/dp.txt'
+
+
 # specific device uuid as defined in device firmware
 uuid="1331ddee130629068283280700010001"
 
@@ -35,6 +43,10 @@ dev_id = 0
 try:
 	sock = bluez.hci_open_dev(dev_id)
 	print ('ble thread started')
+	
+	fp_data = open(datafile,"a")
+	fp_data.write('Epoch_UTC, MAC, T, RH, AH, DP')
+	fp_data.close()
 	print ('Epoch_UTC, MAC, T, RH, AH, DP')
 
 except:
@@ -61,4 +73,24 @@ while True:
 			mac = beacon.split(',')[0]
 
 			print ('{}, {}, {:.2f}, {:.2f}, {:.2f}, {:.2f}'.format(time_at, mac, t, rh, ah, dp))
+
+			fp_data = open(datafile,"a")
+			fp_data.write('{}, {}, {:.2f}, {:.2f}, {:.2f}, {:.2f}'.format(time_at, mac, t, rh, ah, dp))
+			fp_data.close()
+
+			f_t = open(file_t,"w+")
+			f_rh = open(file_rh,"w+")
+			f_ah = open(file_ah,"w+")
+			f_dp = open(file_dp,"w+")
+			
+			f_t.write('{:.2f}'.format(t))
+			f_rh.write('{:.2f}'.format(rh))
+			f_ah.write('{:.2f}'.format(ah))
+			f_dp.write('{:.2f}'.format(dp))			
+
+			f_t.close()
+			f_rh.close()
+			f_ah.close()
+			f_dp.close()
+			
 	time.sleep(5)
